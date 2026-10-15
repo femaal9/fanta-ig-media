@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CAPIMO · Annuncio squadra</title>
 <meta property="og:title" content="CAPIMO · Annuncio squadra">
-<meta property="og:description" content="Stasera alle 22:00 i CAPIMO escono dall'ombra. Non dite che non vi avevamo avvisato.">
+<meta property="og:description" content="Stasera, ore 22:00.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&display=swap">
 <style>
   /* Layout: muro graffiti blu notte e oro, stemma CAPIMO come adesivo, countdown su cartellini blu bordati d'oro */
@@ -141,8 +141,6 @@
     <span class="grosso">Troppo tardi.</span>
   </div>
 
-  <p class="sotto" id="frase">Stasera alle <strong>22:00</strong> i CAPIMO escono dall'ombra. Non dite che non vi avevamo avvisato.</p>
-  <span class="piede"><b>PalaPietralata</b> · 20.000 posti, nessuna via d'uscita</span>
 </main>
 
 <script>
@@ -156,7 +154,6 @@
     if (resto === 0) {
       $("conto").hidden = true;
       $("finito").hidden = false;
-      $("frase").innerHTML = "I <strong>CAPIMO</strong> sono ufficiali. Ora pregate.";
       return false;
     }
     const s = Math.floor(resto / 1000);
