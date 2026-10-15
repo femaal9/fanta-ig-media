@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CAPIMO · Annuncio squadra</title>
 <meta property="og:title" content="CAPIMO · Annuncio squadra">
-<meta property="og:description" content="Stasera alle 22:00 il Presidente presenta i CAPIMO. Da Nashville a Pietralata.">
+<meta property="og:description" content="Stasera alle 22:00 i CAPIMO escono dall'ombra. Non dite che non vi avevamo avvisato.">
 <meta property="og:image" content="https://femaal9.github.io/fanta-ig-media/countdown/capimo-logo.png">
 <link rel="icon" href="capimo-logo.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&display=swap">
@@ -29,7 +29,9 @@
   .muro { position: fixed; inset: 0; overflow: hidden; z-index: 0; }
   .muro svg { display: block; }
   .velo { position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    background: radial-gradient(ellipse at 50% 40%, rgba(10,13,22,.3) 0%, rgba(10,13,22,.8) 100%); }
+    background: radial-gradient(ellipse at 50% 42%, rgba(5,7,13,.35) 0%, rgba(5,7,13,.82) 55%, rgba(0,0,0,.97) 100%); }
+  .grana { position: fixed; inset: -50%; z-index: 0; pointer-events: none; opacity: .14; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); }
 
   main {
     position: relative; z-index: 1; min-height: 100%;
@@ -63,6 +65,7 @@
     text-shadow: 6px 6px 0 var(--oro); text-wrap: balance;
   }
 
+  h1.minaccia { font-size: clamp(46px, 12vw, 120px); color: var(--oro); text-shadow: 0 0 28px rgba(201,162,74,.45), 6px 6px 0 var(--nero); }
   .timer { display: flex; align-items: flex-start; justify-content: center; gap: clamp(6px, 1.6vw, 14px); }
   .cella { display: flex; flex-direction: column; align-items: center; gap: 8px; }
   .cifre {
@@ -90,17 +93,34 @@
   .piede b { color: var(--oro-chiaro); font-weight: 800; }
 
   @media (prefers-reduced-motion: no-preference) {
+    .grana { animation: fruscio .5s steps(4) infinite; }
+    @keyframes fruscio { 0% { transform: translate(0,0); } 25% { transform: translate(-3%,2%); } 50% { transform: translate(2%,-3%); } 75% { transform: translate(-2%,-1%); } }
+    .stemma { animation: entra .9s cubic-bezier(.2,1.4,.4,1) both, battito 1s ease-out .9s infinite; }
+    @keyframes battito {
+      0%, 100% { transform: rotate(2deg) scale(1); filter: drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 0 18px rgba(201,162,74,.35)); }
+      12% { transform: rotate(2deg) scale(1.045); filter: drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 0 46px rgba(201,162,74,.85)); }
+      24% { transform: rotate(2deg) scale(1); }
+      36% { transform: rotate(2deg) scale(1.025); }
+    }
+    h1.minaccia { animation: sfarfalla 6s infinite; }
+    @keyframes sfarfalla { 0%, 91%, 100% { opacity: 1; transform: none; } 92% { opacity: .2; transform: translateX(-4px) skewX(-6deg); } 93% { opacity: 1; } 94% { opacity: .35; transform: translateX(5px); } 96% { opacity: 1; transform: none; } }
+    .timer { animation: scossa 8s infinite; }
+    @keyframes scossa { 0%, 96%, 100% { transform: none; } 97% { transform: translate(-3px, 1px); } 98% { transform: translate(3px, -2px); } 99% { transform: translate(-1px, 2px); } }
+    .vicino .timer { animation-duration: 2.5s; }
+    .vicino .stemma { animation-duration: .9s, .6s; }
     .ultimo .cella:nth-child(5) .cifre { animation: batte 1s steps(1) infinite; }
     @keyframes batte { 50% { transform: rotate(-1deg) scale(1.06); } }
   }
 </style>
 </head>
 <body>
-<div class="muro" data-c1="#16213e" data-c2="#c9a24a" data-c3="#f4ecd8" data-seme="capimo-pietralata"></div>
+<div class="muro" data-c1="#16213e" data-c2="#c9a24a" data-c3="#05070d" data-seme="capimo-pietralata"></div>
 <div class="velo"></div>
+<div class="grana"></div>
 
 <main>
   <span class="kicker">Annuncio squadra</span>
+  <h1 class="minaccia">Sta arrivando</h1>
   <img class="stemma" src="capimo-logo.png" alt="Stemma CAPIMO, Nashville · Pietralata" width="366" height="520">
 
   <div id="conto">
@@ -114,11 +134,11 @@
   </div>
 
   <div class="finito" id="finito" hidden>
-    <span class="grosso">Ci siamo!</span>
+    <span class="grosso">Troppo tardi.</span>
   </div>
 
-  <p class="sotto" id="frase">Stasera alle <strong>22:00</strong> il Presidente presenta i CAPIMO. Da Nashville a Pietralata.</p>
-  <span class="piede"><b>PalaPietralata</b> · 20.000 posti, zero parcheggi</span>
+  <p class="sotto" id="frase">Stasera alle <strong>22:00</strong> i CAPIMO escono dall'ombra. Non dite che non vi avevamo avvisato.</p>
+  <span class="piede"><b>PalaPietralata</b> · 20.000 posti, nessuna via d'uscita</span>
 </main>
 
 <script>
@@ -132,7 +152,7 @@
     if (resto === 0) {
       $("conto").hidden = true;
       $("finito").hidden = false;
-      $("frase").innerHTML = "I <strong>CAPIMO</strong> sono ufficiali. Nashville ha la sua squadra.";
+      $("frase").innerHTML = "I <strong>CAPIMO</strong> sono ufficiali. Ora pregate.";
       return false;
     }
     const s = Math.floor(resto / 1000);
@@ -140,6 +160,7 @@
     $("min").textContent = due(Math.floor((s % 3600) / 60));
     $("sec").textContent = due(s % 60);
     document.body.classList.toggle("ultimo", s < 60);
+    document.body.classList.toggle("vicino", s < 600);
     return true;
   }
   if (aggiorna()) {
